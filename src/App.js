@@ -1,22 +1,25 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import { Route, Switch, Redirect } from "react-router-dom";
 
-import MovieList from './components/MovieList';
-import Movie from './components/Movie';
+import MovieList from "./components/MovieList";
+import Movie from "./components/Movie";
 
-import MovieHeader from './components/MovieHeader';
+import MovieHeader from "./components/MovieHeader";
 
-import AddMovieForm from './components/AddMovieForm';
-import FavoriteMovieList from './components/FavoriteMovieList';
+import AddMovieForm from "./components/AddMovieForm";
+import FavoriteMovieList from "./components/FavoriteMovieList";
 
-const App = props => {
-  const displayFavorites = true;
-
+const App = (props) => {
+  const displayFavorites = useSelector((state) => state.favourite.display);
+  const Movies = useSelector((state) => state.movie.movies);
+  const Title = useSelector((state) => state.movie.appTitle);
+  console.log(Movies);
   return (
     <div>
       <nav className="bg-zinc-800 px-6 py-3">
-        <h1 className="text-xl text-white">Redux Film Projesi</h1>
+        <h1 className="text-xl text-white">{Title}</h1>
       </nav>
 
       <div className="max-w-4xl mx-auto px-3 pb-4">
